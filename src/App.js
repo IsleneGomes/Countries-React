@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-// import { useForm } from 'react-hook-form'
 import './App.css';
 
 function App() {
   const [results, setResults] = useState([]);
   const [search, setSearch] = useState({ value: '' });
-  // const { register, handleSubmit } = useForm();
-
+  const { value } = search;
+  
   useEffect(() => {
     const getCountries = async () => {
       const endpoint = 'https://restcountries.eu/rest/v2/all';
@@ -16,48 +15,39 @@ function App() {
     getCountries();
   }, []);
 
-//   const handleChange = (event) => {
-//     setSearch({search: event.target.value});
-//   }
+  const handleChange = (event) => {
+    setSearch({value: event.target.value});
+  };
 
-//   const onSubmit = (data, e) => {
-//      e.target.reset();
-// }
-
-
-  const searchText = (text) => {
-    if (text !== '') {
-      const texts = search.filter(
+  const searchText = () => {
+    const texts = (!value )? results : results.filter(
         (countrie) =>
-          countrie.name.toLowerCase().includes(text) ||
-          countrie.capital.toLowerCase().includes(text) ||
-          countrie.region.toLowerCase().includes(text) ||
-          countrie.subregion.toLowerCase().includes(text)
+          countrie.name.toLowerCase().includes(search.value) ||
+          countrie.capital.toLowerCase().includes(search.value) ||
+          countrie.region.toLowerCase().includes(search.value) ||
+          countrie.subregion.toLowerCase().includes(search.value)
       );
-      return setSearch(texts);
-    }
+      return texts;
   };
 
   return (
     <div className='container'>
       <header className='header'>
         <h1 className='header-title'>Lista de Países</h1>
-        {/* <form onSubmit={handleChange({ search })}> */}
-          {/* <label className='header-input' htmlFor='countrie'>
+          <label className='header-input' htmlFor='countrie'>
+            Pesquisar:{' '}
             <input
               id='countrie'
               type='search'
               name='search'
               placeholder='Digite o país da sua busca'
+              value={ search.value }
+              onChange={handleChange}
             />
-            <button type='button' onClick={() => searchText(search)}>
-              Pesquisar
-            </button>
           </label>
-        </form> */}
       </header>
       <div className='countries-container'>
-        {results.map((countrie) => (
+        {searchText().map((countrie) => (
           <div key={countrie.name} className='countrie-card'>
             <img
               className='countries-flag'
