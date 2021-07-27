@@ -23,10 +23,10 @@ const [results, setResults] = useState([]);
   const searchText = () => {
     const texts = (!value )? results : results.filter(
         (countrie) =>
-          countrie.name.toLowerCase().includes(search.value) ||
-          countrie.capital.toLowerCase().includes(search.value) ||
-          countrie.region.toLowerCase().includes(search.value) ||
-          countrie.subregion.toLowerCase().includes(search.value)
+          countrie.name.toLowerCase().includes(search.value.toLowerCase()) ||
+          countrie.capital.toLowerCase().includes(search.value.toLowerCase()) ||
+          countrie.region.toLowerCase().includes(search.value.toLowerCase()) ||
+          countrie.subregion.toLowerCase().includes(search.value.toLowerCase())
       );
       return texts;
   };
