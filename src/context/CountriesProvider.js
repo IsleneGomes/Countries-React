@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import CountriesContext from './CountriesContext';
 
 function CountriesProvider({ children }) {
-const [results, setResults] = useState([]);
+  const [results, setResults] = useState([]);
   const [search, setSearch] = useState({ value: '' });
-  const { value } = search;
-  
+
   useEffect(() => {
     const getCountries = async () => {
       const endpoint = 'https://restcountries.eu/rest/v2/all';
@@ -20,19 +19,8 @@ const [results, setResults] = useState([]);
     setSearch({value: event.target.value});
   };
 
-  const searchText = () => {
-    const texts = (!value )? results : results.filter(
-        (countrie) =>
-          countrie.name.toLowerCase().includes(search.value.toLowerCase()) ||
-          countrie.capital.toLowerCase().includes(search.value.toLowerCase()) ||
-          countrie.region.toLowerCase().includes(search.value.toLowerCase()) ||
-          countrie.subregion.toLowerCase().includes(search.value.toLowerCase())
-      );
-      return texts;
-  };
-
     return (
-     <CountriesContext.Provider value={ { results, search, handleChange, searchText } }>
+     <CountriesContext.Provider value={ { results, search, handleChange } }>
       { children }
      </CountriesContext.Provider>
     )

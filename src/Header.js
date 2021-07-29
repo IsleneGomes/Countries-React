@@ -13,9 +13,10 @@ function Header() {
             Pesquisar:{' '}
             <input
               id='countrie'
+              className="input"
               type='search'
               name='search'
-              placeholder='Digite o país da sua busca'
+              placeholder='Digite o país, capital ou continente da sua busca'
               value={ value }
               onChange={handleChange}
             />
