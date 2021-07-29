@@ -9,12 +9,12 @@ function Countries() {
     const texts = (!value )? results : results.filter(
         (countrie) =>
           countrie.translations.br.toLowerCase().includes(search.value.toLowerCase()) ||
+          countrie.name.toLowerCase().includes(search.value.toLowerCase()) ||
           countrie.capital.toLowerCase().includes(search.value.toLowerCase()) ||
           countrie.region.toLowerCase().includes(search.value.toLowerCase())
       );
       return texts;
   };
-  console.log(results[10])
 
     return (
       <div>
