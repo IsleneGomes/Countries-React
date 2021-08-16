@@ -1,3 +1,5 @@
+# Habilidades do Projeto
+
 Projeto de busca por países,  desenvolvido usando React Js, refatorado com Hooks. A princípio foi feito uma busca por API externa
 que gerava como retorno um array de objetos contendo países, capitais, continentes, subregiões e tradução do nome para, inclusive, 
 português-br.
